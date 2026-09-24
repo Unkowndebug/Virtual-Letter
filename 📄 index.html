@@ -1,1 +1,283 @@
 # Virtual-Letter
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>A Letter For You ❤️</title>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,600;1,400&family=Caveat:wght@500&display=swap" rel="stylesheet">
+<style>
+:root{
+  --bg:#12050a; --ink:#f7e9ea; --soft:#d9b7bc; --rose:#ff5c7a; --wine:#3a0d18; --line:rgba(255,92,122,.35);
+  --serif:'Cormorant Garamond',Georgia,serif; --hand:'Caveat','Segoe Print',cursive;
+}
+*{box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{margin:0;background:var(--bg);color:var(--ink);font-family:var(--serif);font-size:21px;line-height:1.8;overflow-x:hidden}
+
+/* progress bar */
+#bar{position:fixed;top:0;left:0;height:3px;width:0;background:var(--rose);z-index:20;box-shadow:0 0 10px var(--rose)}
+
+/* floating hearts */
+.heart{position:fixed;bottom:-50px;color:var(--rose);animation:floatUp linear forwards;opacity:0;z-index:0;pointer-events:none}
+@keyframes floatUp{0%{transform:translateY(0) rotate(0);opacity:0}20%{opacity:.7}100%{transform:translateY(-115vh) rotate(300deg);opacity:0}}
+
+/* chapters */
+.chapter{position:relative;z-index:1;min-height:100vh;padding:14vh 22px;display:flex;flex-direction:column;align-items:center;justify-content:center;text-align:center}
+.chapter:nth-child(even){background:linear-gradient(180deg,transparent,var(--wine) 50%,transparent)}
+.inner{width:100%;max-width:620px}
+.note{font-family:var(--hand);color:var(--rose);font-size:26px;margin:0 0 6px}
+h1,h2{font-weight:600;color:var(--rose);margin:0 0 .5em;line-height:1.15}
+h1{font-size:clamp(46px,11vw,84px)}
+h2{font-size:clamp(32px,7vw,46px)}
+p{margin:0 0 1.2em}
+.quote{font-style:italic;color:var(--soft);border-left:2px solid var(--line);padding-left:16px;text-align:left}
+.hint{color:var(--soft);font-family:var(--hand);font-size:24px;margin-top:40px;animation:bob 2s ease-in-out infinite}
+@keyframes bob{50%{transform:translateY(8px)}}
+
+/* photos */
+.photo{margin:34px auto 0;width:100%;max-width:440px;background:#fff;padding:12px 12px 46px;border-radius:4px;box-shadow:0 12px 40px rgba(0,0,0,.6);position:relative;transform:rotate(-2deg)}
+.chapter:nth-child(even) .photo{transform:rotate(2deg)}
+.photo img{display:block;width:100%;aspect-ratio:4/5;object-fit:cover;background:#2a1016}
+.photo figcaption{position:absolute;bottom:10px;left:0;right:0;text-align:center;font-family:var(--hand);font-size:24px;color:#4a1a24}
+.missing{aspect-ratio:4/5;display:flex;align-items:center;justify-content:center;background:#2a1016;color:var(--soft);font-size:16px;padding:20px}
+
+/* reveal: one soft fade for text blocks */
+.reveal{opacity:0;transition:opacity 1.2s ease}
+.reveal.in{opacity:1}
+
+/* album */
+.album-wrap{max-width:980px}
+.grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(150px,1fr));gap:10px;margin-top:30px}
+.grid button{all:unset;cursor:pointer;display:block;aspect-ratio:1;overflow:hidden;border-radius:6px;border:1px solid var(--line)}
+.grid img{width:100%;height:100%;object-fit:cover;transition:transform .4s}
+.grid button:hover img,.grid button:focus-visible img{transform:scale(1.08)}
+.grid button:focus-visible{outline:2px solid var(--rose)}
+.grid .missing{height:100%;aspect-ratio:auto;font-size:13px}
+
+/* lightbox */
+#lb{position:fixed;inset:0;background:rgba(10,2,5,.94);display:none;align-items:center;justify-content:center;flex-direction:column;z-index:50;padding:20px}
+#lb.open{display:flex}
+#lb img{max-width:100%;max-height:78vh;border-radius:6px;border:2px solid var(--rose)}
+#lb p{font-family:var(--hand);font-size:26px;color:var(--soft);margin:14px 0 0}
+#lb button{background:none;border:none;color:var(--ink);font-size:38px;cursor:pointer;position:absolute;padding:12px}
+#lb .x{top:6px;right:10px}#lb .l{left:6px;top:50%}#lb .r{right:6px;top:50%}
+footer{position:relative;z-index:1;text-align:center;padding:40px 20px 70px;color:var(--soft);font-family:var(--hand);font-size:26px}
+
+@media (prefers-reduced-motion:reduce){.hint,.heart{animation:none}.reveal{transition:none}html{scroll-behavior:auto}}
+</style>
+</head>
+<body>
+<div id="bar"></div>
+
+<!-- ========== 1. HELLO ========== -->
+<section class="chapter">
+  <div class="inner reveal">
+    <p class="note">Para nimo, lang</p>
+    <h1>Hello, mylove:> ❤️</h1>
+    <p>Mao nalang ni akong way of communicating you, so, I'll just say it all here...</p>
+    <p>Anyways, I want to say sorry. Sorry for leaving you, pero that doesn't mean na I don't love you. I love you so much baby.. Till now, I'm still thinking of you everyday..
+    That day mylove, I know nga wala tay proper communication. Di'man sa ingon na gusto pako makig talk balik, I think this is better for us pd to give us some time for ourselves.</p>
+    <p>I don't know how to put this into words, pero it's true na gikapoy ko.. I'm not saying this to hurt you or blame you lang haa.. I just want you to understand and know my side of story..</p>
+    <p>I understand that you're busy, we're both busy man love.. pero I noticed na you changed, you are no longer the Jones that loved me and I loved before..
+      I know love gyapon ko nimo pero I can't feel it love. Gi kapoy ko sigeg expect, sigeg hulat, sigeg pa-abot.. pero wala gyd nahitabo.</p>
+    <p>But I also understand na because sa sched nimo, I know gi kapoy naka, exhausted sa activities, schoolworks, assignments, quizzes, kay students man ta, college namn ta. </p>
+    <p>First week nato sa college, sige kog chat nimo what time are you free? Kung asa ka, nag unsa ka, kay gusto tika doulan, gusto tika maka-uban.
+      And ni abot sa point nga gaka hadlok nakog ask, kay mo ingon nasad kag "Dili man saimo ga revolve akong world" I understand that but it hurts pag galing sayo maem.</p>
+    <p> Pero that's not your fault, it's mine for expecting something nga impossible.</p>
+    <p> Dili na nako e-tagsa2 og ingon kung unsa man tong mga butang nga naka drain sako.. because gi let go ko na yon..</p>
+    <p> Long story short.. we need this.. not just for me or for you but for us... E love sa pod guro nako akong self.. and explore sa mga things nga wala pa nako nabuhat. I think I finally understand what you meant na "love yourself first before you love others":>></p>
+    <p> For the last time, I will always love you bisag wala nata.. Goodluck and Godbless sa imong studies.. Goodluck sa imong new journey! sa Midterm!! I'll always cheer for you and I'm always proud of you.. I love you so much mylove :></p>
+    <p>I'll always watch over you and support you sa malayo.... I miss you.</p>
+    <p> PADAYON ENGR. !!!!❤️❤️❤️</p>
+    <div class="hint">scroll down ↓</div>
+  </div>
+</section>
+
+<!-- ========== 2. A LITTLE MEMORY ========== -->
+<section class="chapter">
+  <div class="inner reveal">
+    <h2>A Little Memory</h2>
+    <p>Soon.. kung pwede na, I hope we can try again:></p>
+    <p class="quote">I'll cherish the time we spend on our HS Days!</p>
+    <figure class="photo" data-src="photos/photo1.jpg" data-cap="the start of us"></figure>
+  </div>
+</section>
+
+<!-- ========== 3. HOW WE STARTED ========== -->
+<section class="chapter">
+  <div class="inner reveal">
+    <h2>US<3</h2>
+    <p>Miss ko na tohhhhh</p>
+    <p>Try again later.. pero if lahi man gyd atong journey.. I'll keep loving you until these feelings fades.</p>
+    <figure class="photo" data-src="photos/photo2.jpg" data-cap="High School Days"></figure>
+  </div>
+</section>
+
+<!-- ========== 4. THINGS I LOVE ========== -->
+<section class="chapter">
+  <div class="inner reveal">
+    <h2>Things that I love about you.</h2>
+    <p>Imong smile, kanang mag wait nako every hapon.</p>
+    <p>Imong laugh, imong pagka gentleman.</p>
+    <p>Ug ang way nimo pagka-caring, sweet and clingy! I miss this version of Jonasss.</p>
+    <p class="quote">MYLOVE, MY BABY, MY HUSBAND, MY POOKIE, MY LANGLANG!</p>
+  </div>
+</section>
+
+<!-- ========== 5. ANOTHER ONE ========== -->
+<section class="chapter">
+  <div class="inner reveal">
+    <h2>Another One ❤️</h2>
+    <p>Maybe this picture doesn't look extraordinary to everyone else.</p>
+    <p>But to me, it means something.</p>
+    <figure class="photo" data-src="photos/photo3.jpg" data-cap="my favorite"></figure>
+  </div>
+</section>
+
+<!-- ========== 6. WHAT I WANTED TO SAY ========== -->
+<section class="chapter">
+  <div class="inner reveal">
+    <h2>What I Wanted To Say</h2>
+    <p>Sometimes I don't know how to say everything that's on my mind.</p>
+    <p>But I hope you know that the moments, conversations, laughs, and memories we shared mattered to me.</p>
+    <p class="quote">Soon.. sa better version of ourselves.</p>
+    <figure class="photo" data-src="photos/photo4.jpg" data-cap="we laughed here"></figure>
+  </div>
+</section>
+
+<!-- ========== 7. SORRY & THANK YOU ========== -->
+<section class="chapter">
+  <div class="inner reveal">
+    <h2>Sorry, Thank you for being my langlang</h2>
+    <p>Sorry sa mga times na nasakitan tika, ug sa mga times na wala ko nakasabot.</p>
+    <p>Salamat sa tanan, sa pasensya, sa memories, sa mga days nga YOU MADE ME THE HAPPIEST GF!.</p>
+    <p class="quote">GOODLUCK ENGR.!!! I love you</p>
+  </div>
+</section>
+
+<!-- ========== 8. ONE LAST THING ========== -->
+<section class="chapter">
+  <div class="inner reveal">
+    <h2>One Last Thing ❤️</h2>
+    <p>Thank you for being part of my story.</p>
+    <p>No matter where life takes us, some memories will always have a special place in my heart.</p>
+    <figure class="photo" data-src="photos/photo5.jpg" data-cap="always"></figure>
+    <div class="hint">one more page ↓</div>
+  </div>
+</section>
+
+<!-- ========== 9. ALBUM ========== -->
+<section class="chapter">
+  <div class="inner album-wrap reveal">
+    <p class="note">Our album</p>
+    <h2>Our Memories</h2>
+    <p>Tap a photo to see it bigger.</p>
+    <div class="grid" id="grid"></div>
+  </div>
+</section>
+
+<footer>I love you, always. ❤️</footer>
+
+<div id="lb" role="dialog" aria-label="Photo viewer">
+  <button class="x" aria-label="Close">×</button>
+  <button class="l" aria-label="Previous">‹</button>
+  <img alt="">
+  <p></p>
+  <button class="r" aria-label="Next">›</button>
+</div>
+
+<script>
+/* =====================================================
+   HOW TO ADD YOUR PHOTOS
+   1. Make a folder called "photos" next to this file.
+   2. Put your pictures inside (photo1.jpg, photo2.jpg ...).
+   3. Photos in the chapters: change the data-src="photos/photo1.jpg"
+      and data-cap="caption" on each <figure class="photo"> above.
+   4. Album photos: edit the list below. Add or remove lines freely.
+   ===================================================== */
+const ALBUM = [
+  { src:"photos/album1.jpg",  cap:"us" },
+  { src:"photos/album2.jpg",  cap:"that day" },
+  { src:"photos/album3.jpg",  cap:"mao ni" },
+  { src:"photos/album4.jpg",  cap:"laughing" },
+  { src:"photos/album5.jpg",  cap:"my favorite" },
+  { src:"photos/album6.jpg",  cap:"remember this?" },
+  { src:"photos/album7.jpg",  cap:"you" },
+  { src:"photos/album8.jpg",  cap:"always" },
+  { src:"photos/album9.jpg",  cap:"forever grateful" },
+  { src:"photos/album10.jpg", cap:"miss you" },
+  { src:"photos/album11.jpg", cap:"us again" },
+  { src:"photos/album12.jpg", cap:"❤️" }
+];
+
+/* ---------- chapter photos (with placeholder if the file isn't found) ---------- */
+function makeImg(src, cap, wrapClass){
+  const img = new Image();
+  img.src = src; img.alt = cap; img.loading = "lazy";
+  img.onerror = () => {
+    const d = document.createElement("div");
+    d.className = "missing";
+    d.textContent = "Add " + src;
+    img.replaceWith(d);
+  };
+  return img;
+}
+document.querySelectorAll("figure.photo").forEach(f=>{
+  f.appendChild(makeImg(f.dataset.src, f.dataset.cap));
+  const c = document.createElement("figcaption");
+  c.textContent = f.dataset.cap; f.appendChild(c);
+});
+
+/* ---------- album + lightbox ---------- */
+const grid = document.getElementById("grid");
+const lb = document.getElementById("lb"), lbImg = lb.querySelector("img"), lbCap = lb.querySelector("p");
+let cur = 0;
+ALBUM.forEach((p,i)=>{
+  const b = document.createElement("button");
+  b.setAttribute("aria-label","Open photo "+(i+1));
+  b.appendChild(makeImg(p.src, p.cap));
+  b.onclick = () => openLb(i);
+  grid.appendChild(b);
+});
+function openLb(i){
+  cur = (i + ALBUM.length) % ALBUM.length;
+  lbImg.src = ALBUM[cur].src; lbImg.alt = ALBUM[cur].cap;
+  lbCap.textContent = ALBUM[cur].cap;
+  lb.classList.add("open");
+}
+lb.querySelector(".x").onclick = () => lb.classList.remove("open");
+lb.querySelector(".l").onclick = () => openLb(cur-1);
+lb.querySelector(".r").onclick = () => openLb(cur+1);
+lb.onclick = e => { if(e.target===lb) lb.classList.remove("open"); };
+document.addEventListener("keydown", e=>{
+  if(!lb.classList.contains("open")) return;
+  if(e.key==="Escape") lb.classList.remove("open");
+  if(e.key==="ArrowLeft") openLb(cur-1);
+  if(e.key==="ArrowRight") openLb(cur+1);
+});
+
+/* ---------- scroll: progress bar + fade-in ---------- */
+const bar = document.getElementById("bar");
+addEventListener("scroll", ()=>{
+  const h = document.documentElement;
+  bar.style.width = (h.scrollTop / (h.scrollHeight - h.clientHeight) * 100) + "%";
+}, {passive:true});
+const io = new IntersectionObserver(es=>es.forEach(e=>{ if(e.isIntersecting) e.target.classList.add("in"); }), {threshold:.15});
+document.querySelectorAll(".reveal").forEach(el=>io.observe(el));
+
+/* ---------- floating hearts ---------- */
+function createHeart(){
+  const h = document.createElement("div");
+  h.className = "heart"; h.textContent = "❤";
+  h.style.left = Math.random()*100 + "vw";
+  h.style.fontSize = (Math.random()*22 + 12) + "px";
+  const d = Math.random()*6 + 8;
+  h.style.animationDuration = d + "s";
+  document.body.appendChild(h);
+  setTimeout(()=>h.remove(), d*1000);
+}
+setInterval(createHeart, 900);
+</script>
+</body>
+</html>
